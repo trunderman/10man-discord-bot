@@ -3,13 +3,13 @@ let jsonframe = require('jsonframe-cheerio');
 let express = require('express');
 let fs = require('fs');
 let app = express();
+var disc = require('./discbot')
 var request = require('request');
-
 
 
 app.get('/', function (req, res) {
 
-    url = 'https://popflash.site/user/896175';
+    url = 'https://popflash.site/user/' + userpopflash;
 
    request(url, function (error, response, html) {
         if (!error) {
@@ -23,8 +23,6 @@ app.get('/', function (req, res) {
                 arr[i++] = $(this).find(".stat").text();
                 
             });
-
-            console.log(arr[1]);
 
             var json = {
 
@@ -48,7 +46,7 @@ app.get('/', function (req, res) {
 
             })
 
-            // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
+           
             res.send('Check your console!')
 
         } else {
@@ -63,7 +61,7 @@ app.get('/', function (req, res) {
 })
 
 app.listen(8081);
-console.log('Magic happens on port 8081');
+console.log('serving on 8081');
 exports = module.exports = app;
 
 
