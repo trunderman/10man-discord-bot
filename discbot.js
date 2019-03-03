@@ -3,108 +3,89 @@ const client = new Discord.Client()
 const fs = require("fs")
 const { token } = require("./config.json")
 
-client.on('ready', () => {
-    console.log("Connected as " + client.user.tag)
 
-    console.log(f);
+function discBot() {
 
-    client.user.setActivity("CS", { type: "PLAYING" })
+    var userId;
 
-    client.guilds.forEach((guild) => {
-        console.log(guild.name)
-        guild.channels.forEach((channel) => {
-            console.log(` -${channel.name} ${channel.type} ${channel.id}`)
+    const instructions = new Discord.Attachment('assets/instructions.png')
+
+    client.on('ready', () => {
+        console.log("Connected as " + client.user.tag)
+
+       
+
+        client.user.setActivity("CS", { type: "PLAYING" })
+
+        client.guilds.forEach((guild) => {
+            console.log(guild.name)
+            guild.channels.forEach((channel) => {
+                console.log(` -${channel.name} ${channel.type} ${channel.id}`)
+            })
         })
+
+
     })
 
-   
-})
+    client.on('message', (receivedMessage) => {
+        if (receivedMessage.author == client.user) {
+            return
+        }
 
-client.on('message', (receivedMessage) => {
-    if (receivedMessage.author == client.user) {
-        return
-    }
-    
-    if (receivedMessage.content.startsWith("*")) {
-        processCommand(receivedMessage)
-    }
-})
+        if (receivedMessage.content.startsWith("*")) {
+            processCommand(receivedMessage)
+        }
+    })
 
-//command processing        
-function processCommand(receivedMessage) {
-    let fullCommand = receivedMessage.content.substr(1)
-    let splitCommand = fullCommand.split(" ")
-    let primaryCommand = splitCommand[0]
-    let arguments = splitCommand.slice(1)
-  
-
-    var userData = JSON.parse(fs.readFileSync("Storage/userData.json", "utf8"))
-    var sender = receivedMessage.author
+    //command processing        
+    function processCommand(receivedMessage) {
+        let fullCommand = receivedMessage.content.substr(1)
+        let splitCommand = fullCommand.split(" ")
+        let primaryCommand = splitCommand[0]
+        let arguments = splitCommand.slice(1)
 
 
-    if (primaryCommand == commands[0]) {
-        helpCommand(arguments, receivedMessage)
-    }
+       
+        var sender = receivedMessage.author
 
-    if (primaryCommand == commands[1]) {
-        roastJosh(arguments, receivedMessage)
-    }
 
-    if (primaryCommand == commands[2]) {
-        hello(arguments, receivedMessage)
-    }
+        if (primaryCommand == "popflash") {
+            console.log("hello");
+            receivedMessage.channel.send("Hello " + receivedMessage.author + ", thanks for using the Popflash bot. enter your popflash user ID (*userid ____). Example in screenshot below.")
+            receivedMessage.channel.send(instructions)
+        }
 
-    if (primaryCommand == commands[0] && arguments == "commands") {
-        receivedMessage.channel.send("commands are as follows: help, josh, hi")
+        if (primaryCommand == "userid") {
+            userId = arguments;
+            console.log(userId);
+            exports.userId = userId;
+        }
+
     }
 
-    if (primaryCommand == commands[5]) {
-        receivedMessage.channel.send("ez ", momo)
+
+    //functions
+
+    function hello(arguments, receivedMessage) {
+        receivedMessage.channel.send("Hello " + receivedMessage.author)
     }
 
-    if (primaryCommand == commands[3] && userData[sender].mainCharacter != "") {
-
-        userData[sender].gamesWon++
-        fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-            if (err) console.err
-        })
-        receivedMessage.channel.send("GG, score updated")
-    } else if (userData[sender].mainCharacter == " ") {
-        receivedMessage.channel.send("declare your main")
+    function roastJosh(arguments, receivedMessage) {
+        receivedMessage.channel.send("Josh stop full hopping")
     }
 
-    if (primaryCommand == commands[4]) {
-        receivedMessage.channel.send(sender + " has won this many times: " + userData[sender].gamesWon)
+    function helpCommand(arguments, receivedMessage) {
+        if (arguments.length == 0) {
+            receivedMessage.channel.send("Invalid command, try `*help [topic]`")
+
+        } else if (arguments != "commands") {
+            receivedMessage.channel.send("it looks like you need help with " + arguments)
+        }
     }
 
-    if (primaryCommand == commands[6]) {
-        receivedMessage.channel.send(sender + " has won this many times: " + userData[sender].gamesWon)
-    }
-}
-
-
-//functions
-
-
-function castIteration() {
+    client.login(token)
 
 }
 
-function hello(arguments, receivedMessage) {
-    receivedMessage.channel.send("Hello " + receivedMessage.author)
-}
+module.exports = discBot;
 
-function roastJosh(arguments, receivedMessage) {
-    receivedMessage.channel.send("Josh stop full hopping")
-}
-
-function helpCommand(arguments, receivedMessage) {
-    if (arguments.length == 0) {
-        receivedMessage.channel.send("Invalid command, try `*help [topic]`")
-
-    } else if (arguments != "commands") {
-        receivedMessage.channel.send("it looks like you need help with " + arguments)
-    }
-}
-
-client.login(token)

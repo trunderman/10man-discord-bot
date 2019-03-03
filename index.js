@@ -6,10 +6,13 @@ let app = express();
 var disc = require('./discbot')
 var request = require('request');
 
+disc();
+
+
 
 app.get('/', function (req, res) {
 
-    url = 'https://popflash.site/user/' + userpopflash;
+    url = 'https://popflash.site/user/896175';
 
    request(url, function (error, response, html) {
         if (!error) {
@@ -60,29 +63,10 @@ app.get('/', function (req, res) {
     });
 })
 
+console.log(disc.userId);
+
 app.listen(8081);
 console.log('serving on 8081');
 exports = module.exports = app;
-
-
-
-
-
-
-
-
-//let $ = cheerio.load('https://popflash.site/user/896175');
-//jsonframe($); // initializes the plugin
-
-
-//let frame = {
-//    "HLTV": ".stat-title:contains('HLTV')"
-//}
-
-//console.log()
-//let result = $('body').scrape(frame, { string: true });
-//console.log(result);
-
-
 
 
