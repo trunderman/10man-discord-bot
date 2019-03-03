@@ -15,36 +15,34 @@ app.get('/', function (req, res) {
         if (!error) {
 
             var $ = cheerio.load(html);
-            
-            var json = {
-                
-                stats: {
-                    "HLTV": "",
-                    "ADR": "",
-                    "HS": "",
-                    "W": "",
-                    "L": "",
-                    "T": "",
-                    "%": "",
-                }
-            };
-
             var arr = [];
             var i = 0;
+            
 
             $('.stat-container').each(function (key, value) {
                 arr[i++] = $(this).find(".stat").text();
                 
             });
 
-            //console.log(json.stats);  
+            console.log(arr[1]);
 
-            for (i = 0; i < json.stats.length; i++) {
-                console.log(json.stats);
-            }
-           // console.log(json.stats);
-            Q
-            fs.writeFile('output.json', JSON.stringify(arr, null, 4), function (err) {
+            var json = {
+
+
+                HLTV: arr[0],
+                ADR: arr[1],
+                HS: arr[2],
+                W: arr[3],
+                L: arr[4],
+                T: arr[5],
+                win_percent: arr[6]
+
+            };
+
+          
+            console.log(json);
+            
+            fs.writeFile('output.json', JSON.stringify(json, null, 4), function (err) {
              
                 console.log('File successfully written! - Check your project directory for the output.json file');
 
