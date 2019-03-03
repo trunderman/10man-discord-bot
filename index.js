@@ -1,23 +1,90 @@
-const rp = require("request-promise");
-const cheerio = require("cheerio");
-const Table = require("cli-table");
+let cheerio = require('cheerio');
+let jsonframe = require('jsonframe-cheerio');
+let express = require('express');
+let fs = require('fs');
+let app = express();
+var request = require('request');
 
-let users = [];
 
-const options = {
-    uri: 'https://popflash.site/user/896175',
-    transform: function (body) {
-        return cheerio.load(body);
-    },
-    json: true
-}
 
-rp(options)
-    .then(($) => {
-        //console.log($);
-        var stat = $('.stat-container').text();
-        var res = stat.split('\n');
-        var obj = { obj: res };
-        //var json = JSON.stringify(stat)
-        console.log(obj);
+app.get('/', function (req, res) {
+
+    url = 'https://popflash.site/user/896175';
+
+   request(url, function (error, response, html) {
+        if (!error) {
+
+            var $ = cheerio.load(html);
+            var arr = [];
+            var i = 0;
+            
+
+            $('.stat-container').each(function (key, value) {
+                arr[i++] = $(this).find(".stat").text();
+                
+            });
+
+            console.log(arr[1]);
+
+            var json = {
+
+
+                HLTV: arr[0],
+                ADR: arr[1],
+                HS: arr[2],
+                W: arr[3],
+                L: arr[4],
+                T: arr[5],
+                win_percent: arr[6]
+
+            };
+
+          
+            console.log(json);
+            
+            fs.writeFile('output.json', JSON.stringify(json, null, 4), function (err) {
+             
+                console.log('File successfully written! - Check your project directory for the output.json file');
+
+            })
+
+            // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
+            res.send('Check your console!')
+
+        } else {
+
+            console.log('error happened :' + error);
+
+        }
+
+       
+
     });
+})
+
+app.listen(8081);
+console.log('Magic happens on port 8081');
+exports = module.exports = app;
+
+
+
+
+
+
+
+
+//let $ = cheerio.load('https://popflash.site/user/896175');
+//jsonframe($); // initializes the plugin
+
+
+//let frame = {
+//    "HLTV": ".stat-title:contains('HLTV')"
+//}
+
+//console.log()
+//let result = $('body').scrape(frame, { string: true });
+//console.log(result);
+
+
+
+
