@@ -6,12 +6,12 @@ var disc = require('./discbot')
 var request = require('request');
 
 
-function popflashscraper() {
+function popflashscraper(x) {
 
     app.get('/', function (req, res) {
 
-        url = 'https://popflash.site/user/896175';
-
+        url = 'https://popflash.site/user/' + x;
+        console.log(e)
         request(url, function (error, response, html) {
             if (!error) {
 
