@@ -261,5 +261,4 @@ __pycache__/
 *.pyc
 
 config.json
-output.json
 .gitattributes

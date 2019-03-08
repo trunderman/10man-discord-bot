@@ -1,11 +1,11 @@
 const Discord = require('discord.js')
+const rp = require('request-promise');
 const client = new Discord.Client()
 const fs = require("fs")
 const { token } = require("./config.json")
 let cheerio = require('cheerio');
 var request = require('request');
-let express = require('express');
-let app = express();
+const $ = require('cheerio');
 const instructions = new Discord.Attachment('assets/instructions.png')
 
     client.on('ready', () => {
@@ -48,8 +48,13 @@ const instructions = new Discord.Attachment('assets/instructions.png')
 
         if (primaryCommand == "userid") {
             var id = arguments
-            console.log(id);
-            popflashScraper(id)
+           // console.log(id);
+            statScrape(id, sender)
+            receivedMessage.channel.send(receivedMessage.author +",your userId for Popflash has been set, please you *stats to view results");
+        }
+
+        if (primaryCommand == "stats") {
+           
         }
 
     }
@@ -74,63 +79,53 @@ const instructions = new Discord.Attachment('assets/instructions.png')
     //    }
     //}
 
-    function popflashScraper(arguments) {      
+function statScrape(id, sender) {
+ 
+    var userUrl = 'https://popflash.site/user/' + id;
+   // console.log(userUrl);
 
-        app.get('/', function (req, res) {
+    
+    rp(userUrl)
+        .then(function (html) {
+            const arr = [];
+            var i = 0;
 
-            url = 'https://popflash.site/user/896175';
-
-            request(url, function (error, response, html) {
-                if (!error) {
-
-                    var $ = cheerio.load(html);
-                    var arr = [];
-                    var i = 0;
-                    console.log(arr);
-
-
-                    $('.stat-container').each(function (key, value) {
-                        arr[i++] = $(this).find(".stat").text();
-
-                    });
-
-                    var json = {
-                        ``
-                        HLTV: arr[0],
-                        ADR: arr[1],
-                        HS: arr[2],
-                        W: arr[3],
-                        L: arr[4],
-                        T: arr[5],
-                        win_percent: arr[6]
-
-                    };
-
-
-                    console.log(json);
-
-                    fs.writeFile('output.json', JSON.stringify(json, null, 4), function (err) {
-
-                        console.log('File successfully written! - Check your project directory for the output.json file');
-
-                    })
-
-
-                    res.send('Check your console!')
-
-                } else {
-
-                    console.log('error happened :' + error);
-
-                }
-
-
+            $('.stat-container', html).each(function (key, value) {
+                arr[i++] = $(this).find(".stat").text();
 
             });
-        })
-     }
-   
 
+            var json = {
+
+            
+                HLTV: arr[0],
+                ADR: arr[1],
+                HS: arr[2],
+                W: arr[3],
+                L: arr[4],
+                T: arr[5],
+                win_percent: arr[6]
+
+            };
+
+            fs.writeFile(id + '.json', JSON.stringify(json, null, 4), function (err) {
+                
+                console.log('File successfully written! - Check your project directory for the user output.json file');
+
+            })
+            console.log(sender.username);
+            console.log(json);
+            return json;
+        })
+
+        .catch(function (err) {
+            console.log("oops error yikes");
+        });
+}
+
+function statRetriever(sender, id,) {
+
+}
 
     client.login(token)
 
