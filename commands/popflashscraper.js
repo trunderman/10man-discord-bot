@@ -3,6 +3,10 @@ const rp = require('request-promise');
 const $ = require('cheerio');
 let cheerio = require('cheerio');
 const fs = require("fs");
+const mongoose = require("mongoose");
+const Stats = require("../models/stats.js");
+
+mongoose.connect('mongodb://localhost/Stats');
 
 
 module.exports.run = async (bot, message, args) => {
@@ -22,10 +26,11 @@ module.exports.run = async (bot, message, args) => {
                  arr[i++] = $(this).find(".stat").text();
  
              });
- 
-             var json = {
- 
-             
+         
+
+             const stats = new Stats({
+                 _id: mongoose.Types.ObjectId(),
+                 userId: args,
                  HLTV: arr[0],
                  ADR: arr[1],
                  HS: arr[2],
@@ -33,22 +38,21 @@ module.exports.run = async (bot, message, args) => {
                  L: arr[4],
                  T: arr[5],
                  win_percent: arr[6]
- 
-             };
- 
-             fs.writeFile(args + '.json', JSON.stringify(json, null, 4), function (err) {
-                 
-                 console.log('File successfully written! - Check your project directory for the user output.json file');
- 
-             })
-             //onsole.log(sender.username);
-             console.log(json);
-             return json;
+             });
+
+             stats.save()
+                 .then(function (result) {                   
+                     message.reply(", your stats are:" + result.toString());
+                 })
+                 //.then(result => console.log(result));
+                 //    message.reply(result.toString());
          })
  
-         .catch(function (err) {
-             console.log("oops error yikes");
-         });
+         //.catch(function (err) {
+         //    console.log("oops error yikes");
+         //});         //.catch(function (err) {
+         //    console.log("oops error yikes");
+         //});
 }
 
 module.exports.help = {
