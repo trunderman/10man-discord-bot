@@ -10,16 +10,17 @@ mongoose.connect('mongodb://localhost/Stats');
 
 
 module.exports.run = async (bot, message, args) => {
-    
-    if (args.length === 0) {
+    var lengths = args.map(function (id) {
+        return id.length
+    });
+    console.log(lengths)
+    if (lengths < 5 && 6) {
         message.reply("invalid userId format")
     } else {
 
     var userUrl = 'https://popflash.site/user/' +args;
-  
+         
 
-
-     
      rp(userUrl)
          .then(function (html) {
              const arr = [];

@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
         .setDescription("Popflash BOT commands")
         .setColor("BLURPLE")
         .setThumbnail(sicon)
-        .addField("Link your popflash account", "*userid______")
+        .addField("Link your popflash account", "*userid {id}")
         .addField("popflash linking instructions", "*instructions")
         .addField("Personal Stats", "*mystats")
         .addField("HLTV Ranking", "*ranking")
