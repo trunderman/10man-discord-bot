@@ -1,0 +1,31 @@
+{
+  "name": "popflashscraper",
+  "version": "1.0.0",
+  "description": "disc bot for popflash stats",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "cli-table": "^0.3.1",
+    "discord.js": "^11.4.2",
+    "express": "^4.16.4",
+    "fs": "^0.0.1-security",
+    "jsonframe-cheerio": "^3.0.1",
+    "mongoose": "^5.4.19",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trunderman/Popflash.site-Scraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trunderman/Popflash.site-Scraper/issues"
+  },
+  "homepage": "https://github.com/trunderman/Popflash.site-Scraper#readme"
+}
