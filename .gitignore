@@ -260,5 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-config.json
 .gitattributes
+config.json
