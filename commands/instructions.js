@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
         .setDescription("Popflash Linking")
         .setColor("BLURPLE")
         .setImage("https://i.gyazo.com/ab65c019441af29605302b314da6cfe4.png")
-        .setFooter("take your 6 digit ID from popflash and amend it to the *userid command");
+        .setFooter("take your 6 digit ID from popflash and amend it to the *userid command \n example: *userid123456");
 
 
     return message.channel.send(serverembed);

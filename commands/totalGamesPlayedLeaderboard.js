@@ -11,11 +11,12 @@ mongoose.connect('mongodb://localhost/Stats');
 
 module.exports.run = async (bot, message, args) => {
 
-    Stats.find({}).sort([['HLTV', 'descending']]).exec((err, res) => {
+    Stats.find({}).sort([['totalGames', 'descending']]).exec((err, res) => {
+
         if (err) console.log(err);
 
         let embed = new Discord.RichEmbed()
-            .setTitle("HLTV Leaderboard")
+            .setTitle("Total Wins Leaderboard")
         //if there are no results
         if (res.length === 0) {
             embed.setColor("RED");
@@ -26,9 +27,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < res.length; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
                 }
             }
         } else {
@@ -37,9 +38,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < 10; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
                 }
             }
         }
@@ -49,6 +50,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "ranking",
-    aliad: "leaderboard"
+    name: "totalgamesboard",
+    alias: "leaderboard"
 }

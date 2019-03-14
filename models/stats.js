@@ -7,9 +7,10 @@ const statSchema = mongoose.Schema({
     HLTV: String,
     ADR: String,
     HS: String,
-    W: String,
-    L: String,
+    W: Number,
+    L: Number,
     T: String,
+    totalGames: Number,
     win_percent: String
 
 });
