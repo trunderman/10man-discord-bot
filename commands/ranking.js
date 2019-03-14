@@ -12,7 +12,6 @@ mongoose.connect('mongodb://localhost/Stats');
 module.exports.run = async (bot, message, args) => {
 
     Stats.find({}).sort([['HLTV', 'descending']]).exec((err, res) => {
-        console.log(res);
         if (err) console.log(err);
 
         let embed = new Discord.RichEmbed()

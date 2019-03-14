@@ -14,9 +14,9 @@ module.exports.run = async (bot, message, args) => {
     if (args.length === 0) {
         message.reply("invalid userId format")
     } else {
-    console.log(args);
+
     var userUrl = 'https://popflash.site/user/' +args;
-    console.log(userUrl);
+  
 
 
      

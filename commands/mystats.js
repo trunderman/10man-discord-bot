@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
 
         } else { 
             message.reply('here are your popflash stats: \n' + docs.toString());
-            console.log(message.guild.id);
+    
         }
       
     })
