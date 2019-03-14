@@ -4,7 +4,7 @@ Multi purpose discord botwith the functionality of scraping stats from popflash.
 
 to get code running locally after installing dependencies,and mongodb.
 
-run either node index.js or nodemon for constant refreshing
+run either node index.js or nodemon (start.bat file if on windows) for constant refreshing
 
 If you are going to contribute to this project, please work off of the dev branch and reference the Trello board below for features and bugs.
 
