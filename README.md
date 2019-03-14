@@ -1,4 +1,4 @@
-#Multi purpose discord botwith the functionality of scraping statitistics from popflash.site for 10 mans.
+Multi purpose discord botwith the functionality of scraping stats from popflash.site for 10 mans.
 
 to get code running locally after installing dependencies, 
 
