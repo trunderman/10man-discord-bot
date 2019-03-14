@@ -6,7 +6,6 @@ const fs = require("fs")
 let cheerio = require('cheerio');
 var request = require('request');
 const $ = require('cheerio');
-//const instructions = new Discord.Attachment('assets/instructions.png')
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
@@ -28,7 +27,7 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async() => {
     console.log(`${bot.user.username} is online ! `);
-    bot.user.setActivity("10 mans", { type: "Watching" });
+    //bot.user.setActivity("10 mans", { type: "Watching" });
 }); 
 
 bot.on("message", async message => {

@@ -5,11 +5,12 @@ module.exports.run = async (bot, message, args) => {
     let serverembed = new Discord.RichEmbed()
         .setDescription("Popflash BOT commands")
         .setColor("BLURPLE")
-        .setThumbnail(sicon)
-        .addField("Link your popflash account", "*userid {id}")
-        .addField("popflash linking instructions", "*instructions")
+        .addField("popflash linking instructions", "*instructions") 
+        .addField("Link your popflash account", "*userid {id}...see *instructions on how to get your Id.")
         .addField("Personal Stats", "*mystats")
-        .addField("HLTV Ranking", "*ranking")
+        .addField("others stats", "*stats {discordtag}")
+        .addField("Leaderboards", "*hltvboard, *winsboard, *totalgamesboard")
+        
 
 
     return message.channel.send(serverembed);
