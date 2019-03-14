@@ -10,11 +10,12 @@ mongoose.connect('mongodb://localhost/Stats');
 
 
 module.exports.run = async (bot, message, args) => {
+  
     var lengths = args.map(function (id) {
         return id.length
     });
     console.log(lengths)
-    if (lengths < 5 && 6) {
+    if (lengths < 5 || lengths > 6) {
         message.reply("invalid userId format")
     } else {
 
@@ -44,6 +45,7 @@ module.exports.run = async (bot, message, args) => {
                      W: arr[3],
                      L: arr[4],
                      T: arr[5],
+                     totalGames: arr[3] + arr[4],
                      win_percent: arr[6]
                  }
              }, {upsert:true} )
