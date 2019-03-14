@@ -6,7 +6,7 @@ const fs = require("fs")
 let cheerio = require('cheerio');
 var request = require('request');
 const $ = require('cheerio');
-const instructions = new Discord.Attachment('assets/instructions.png')
+//const instructions = new Discord.Attachment('assets/instructions.png')
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {

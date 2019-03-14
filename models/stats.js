@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const statSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    userName: String,
     userId: String,
     HLTV: String,
     ADR: String,

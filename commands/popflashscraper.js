@@ -11,11 +11,14 @@ mongoose.connect('mongodb://localhost/Stats');
 
 module.exports.run = async (bot, message, args) => {
     
- 
+    if (args.length === 0) {
+        message.reply("invalid userId format")
+    } else {
     console.log(args);
     var userUrl = 'https://popflash.site/user/' +args;
     console.log(userUrl);
- 
+
+
      
      rp(userUrl)
          .then(function (html) {
@@ -26,24 +29,37 @@ module.exports.run = async (bot, message, args) => {
                  arr[i++] = $(this).find(".stat").text();
  
              });
-         
 
-             const stats = new Stats({
-                 _id: mongoose.Types.ObjectId(),
-                 userId: args,
-                 HLTV: arr[0],
-                 ADR: arr[1],
-                 HS: arr[2],
-                 W: arr[3],
-                 L: arr[4],
-                 T: arr[5],
-                 win_percent: arr[6]
-             });
 
-             stats.save()
-                 .then(function (result) {                   
-                     message.reply(", your stats are:" + result.toString());
+             var query = { userName: message.member.user.tag};
+             Stats.findOneAndUpdate(query, {
+                 $set: {
+                     //_id: mongoose.Types.ObjectId(),
+                     userName: message.member.user.tag,
+                     userId: args,
+                     HLTV: arr[0],
+                     ADR: arr[1],
+                     HS: arr[2],
+                     W: arr[3],
+                     L: arr[4],
+                     T: arr[5],
+                     win_percent: arr[6]
+                 }
+             }, {upsert:true} )
+                 .then(function (result) {
+                     message.reply("popflash has been linked");
                  })
+             //const stats = new Stats({
+                
+             //});
+
+             //console.log(stats.userName);
+
+            
+             //stats.save()
+             //    .then(function (result) {                   
+             //        message.reply(", your stats are:" + result.toString());
+             //    })
                  //.then(result => console.log(result));
                  //    message.reply(result.toString());
          })
@@ -51,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
          //.catch(function (err) {
          //    console.log("oops error yikes");
          //});         //.catch(function (err) {
-         //    console.log("oops error yikes");
+    }    //    console.log("oops error yikes");
          //});
 }
 
