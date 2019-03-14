@@ -27,9 +27,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < res.length; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Games Played**: ${res[i].totalGames}`);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Games Played**: ${res[i].totalGames}`);
                 }
             }
         } else {
@@ -38,9 +38,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < 10; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Games Played**: ${res[i].totalGames}`);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].totalGames}`);
+                    embed.addField(`${i + 1}. ${member}`, `**Games Played**: ${res[i].totalGames}`);
                 }
             }
         }

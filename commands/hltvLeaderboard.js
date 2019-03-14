@@ -26,9 +26,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < res.length; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}**Games Played**: ${res[i].totalGames} `);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV} **Games Played**: ${res[i].totalGames}`);
                 }
             }
         } else {
@@ -37,9 +37,9 @@ module.exports.run = async (bot, message, args) => {
             for (i = 0; i < 10; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV} **Games Played**: ${res[i].totalGames}`);
                 } else {
-                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV}`);
+                    embed.addField(`${i + 1}. ${member}`, `**HLTV**: ${res[i].HLTV} **Games Played**: ${res[i].totalGames}`);
                 }
             }
         }
