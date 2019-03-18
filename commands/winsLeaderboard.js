@@ -30,16 +30,16 @@ module.exports.run = async (bot, message, args) => {
             rp(userUrl)
                 .then(function (html) {
                     const arr = [];
-                    var i = 0;
+                    var e = 0;
 
                     $('.stat-container', html).each(function (key, value) {
-                        arr[i++] = $(this).find(".stat").text();
+                        arr[e++] = $(this).find(".stat").text();
 
                     });
 
                     var results = arr.map(Number)
 
-                    var query = { userName: message.member.user.tag };
+                    var query = { userId: ids[i] };
                     Stats.findOneAndUpdate(query, {
                         $set: {
                             HLTV: results[0],
