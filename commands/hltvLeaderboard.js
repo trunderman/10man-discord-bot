@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
                             win_percent: results[6]
                         }
                     }, { upsert: true })
-                    console.log(arr)
+                 
                 })
         }
 
