@@ -36,7 +36,8 @@ module.exports.run = async (bot, message, args) => {
              var results = arr.map(Number)
              //console.log(results)
 
-             var query = { userName: message.member.user.tag};
+             var query = { userId: args };
+             console.log(query);
              Stats.findOneAndUpdate(query, {
                  $set: {
                      //_id: mongoose.Types.ObjectId(),
