@@ -5,11 +5,62 @@ let cheerio = require('cheerio');
 const fs = require("fs");
 const mongoose = require("mongoose");
 const Stats = require("../models/stats.js");
+//const scrape = require("../commands/popflashscraper");
+
 
 mongoose.connect('mongodb://localhost/Stats');
 
 
 module.exports.run = async (bot, message, args) => {
+    var ids = [];
+
+
+    Stats.find({}, 'userId', { '_id': 0}, function (err, docs) {
+    
+        for (i = 0; i < docs.length; i++) {
+            ids.push(docs[i].userId);
+        }
+
+        /////
+
+        for (i = 0; i < ids.length; i++) {
+
+            var userUrl = 'https://popflash.site/user/' + ids[i];
+
+
+            rp(userUrl)
+                .then(function (html) {
+                    const arr = [];
+                    var i = 0;
+
+                    $('.stat-container', html).each(function (key, value) {
+                        arr[i++] = $(this).find(".stat").text();
+
+                    });
+
+                    var results = arr.map(Number)
+
+                    var query = { userName: message.member.user.tag };
+                    Stats.findOneAndUpdate(query, {
+                        $set: {
+                            HLTV: results[0],
+                            ADR: results[1],
+                            HS: results[2],
+                            W: results[3],
+                            L: results[4],
+                            T: results[5],
+                            totalGames: results[3] + results[4],
+                            win_percent: results[6]
+                        }
+                    }, { upsert: true })   
+               
+                })   
+        }
+
+    });
+
+
+
     Stats.find({ userName: message.member.user.tag }, { '_id': 0, '__v': 0, 'userId': 0, 'userName': 0}, function (err, docs) {
 
         if (docs.length == 0) {
@@ -29,7 +80,7 @@ module.exports.run = async (bot, message, args) => {
 
         message.channel.send(statsEmbed);
 
-            console.log(docs[0]);
+            
 
     
         }

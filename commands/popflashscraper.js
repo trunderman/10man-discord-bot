@@ -26,12 +26,15 @@ module.exports.run = async (bot, message, args) => {
          .then(function (html) {
              const arr = [];
              var i = 0;
+            
  
              $('.stat-container', html).each(function (key, value) {
                  arr[i++] = $(this).find(".stat").text();
  
              });
 
+             var results = arr.map(Number)
+             //console.log(results)
 
              var query = { userName: message.member.user.tag};
              Stats.findOneAndUpdate(query, {
@@ -39,19 +42,22 @@ module.exports.run = async (bot, message, args) => {
                      //_id: mongoose.Types.ObjectId(),
                      userName: message.member.user.tag,
                      userId: args,
-                     HLTV: arr[0],
-                     ADR: arr[1],
-                     HS: arr[2],
-                     W: arr[3],
-                     L: arr[4],
-                     T: arr[5],
-                     totalGames: arr[3] + arr[4],
-                     win_percent: arr[6]
+                     HLTV: results[0],
+                     ADR: results[1],
+                     HS: results[2],
+                     W: results[3],
+                     L: results[4],
+                     T: results[5],
+                     totalGames: results[3] + results[4],
+                     win_percent: results[6]
                  }
              }, {upsert:true} )
                  .then(function (result) {
+                
                      message.reply("popflash has been linked");
+                     
                  })
+            
              //const stats = new Stats({
                 
              //});
@@ -67,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
                  //    message.reply(result.toString());
          })
  
-         //.catch(function (err) {
+         //
          //    console.log("oops error yikes");
          //});         //.catch(function (err) {
     }    //    console.log("oops error yikes");
