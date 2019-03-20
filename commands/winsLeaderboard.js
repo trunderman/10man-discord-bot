@@ -22,9 +22,9 @@ module.exports.run = async (bot, message, args) => {
 
         /////
 
-        for (i = 0; i < ids.length; i++) {
-
-            var userUrl = 'https://popflash.site/user/' + ids[i];
+        ids.forEach(function (entry) {
+            var userUrl = 'https://popflash.site/user/' + entry;
+           
 
 
             rp(userUrl)
@@ -37,9 +37,13 @@ module.exports.run = async (bot, message, args) => {
 
                     });
 
-                    var results = arr.map(Number)
 
-                    var query = { userId: ids[i] };
+
+                    var results = arr.map(Number)
+                   
+
+                    var query = { userId: entry };
+                 
                     Stats.findOneAndUpdate(query, {
                         $set: {
                             HLTV: results[0],
@@ -51,10 +55,15 @@ module.exports.run = async (bot, message, args) => {
                             totalGames: results[3] + results[4],
                             win_percent: results[6]
                         }
-                    }, { upsert: true })
-                
+                    })
+                        .then(function (result) {
+
+                            console.log(result)
+
+                        })
+
                 })
-        }
+        }); 
 
     });
 
@@ -82,7 +91,7 @@ module.exports.run = async (bot, message, args) => {
         } else {
             //more than 10 results
             embed.setColor("BLURPLE");
-            for (i = 0; i < 10; i++) {
+            for (i = 0; i < res.length; i++) {
                 let member = res[i].userName || "User Left"
                 if (member === "User Left") {
                     embed.addField(`${i + 1}. ${member}`, `**Wins**: ${res[i].W}`);

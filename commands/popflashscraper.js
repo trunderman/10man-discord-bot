@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
              }, {upsert:true} )
                  .then(function (result) {
                 
-                     message.reply("popflash has been linked");
+                     message.reply("popflash stats have been scraped");
                      
                  })
             
