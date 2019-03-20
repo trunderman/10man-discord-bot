@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
 
                     var query = { userId: entry };
                  
-                    Stats.findOneAndUpdate(query, {
+                    Stats.findOne(query, {
                         $set: {
                             HLTV: results[0],
                             ADR: results[1],
