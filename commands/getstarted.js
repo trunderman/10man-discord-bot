@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
         .addField("popflash linking instructions", "!instructions") 
         .addField("Link your popflash account", "!userid {id}...see !instructions on how to get your Id.")
         .addField("Personal Stats", "!stats")
-        .addField("others stats", "!stats {discordtag}")
+        .addField("others stats", "!stats {discordtag} !stats woah#6472")
         .addField("Leaderboards", "!hltvboard, !winsboard, !totalgamesboard")
         
 
