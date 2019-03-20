@@ -9,7 +9,6 @@ const statSchema = mongoose.Schema({
     HS: String,
     W: Number,
     L: Number,
-    T: String,
     totalGames: Number,
     win_percent: String
 

@@ -262,3 +262,6 @@ __pycache__/
 
 config.json
 .gitattributes
+node_modules/
+package-lock.json
+
