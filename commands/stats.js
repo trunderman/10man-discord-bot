@@ -11,9 +11,6 @@ module.exports.run = async (bot, message, args) => {
     //pull most recent stats for all registered players
     var ids = [];
 
-   
-
-
     Stats.find({}, 'userId', { '_id': 0 }, function (err, docs) {
 
         for (i = 0; i < docs.length; i++) {
@@ -37,14 +34,14 @@ module.exports.run = async (bot, message, args) => {
 
                     });
 
-
+                       
 
                     var results = arr.map(Number)
-                   
+                   console.log(results[0]);
 
                     var query = { userId: entry };
                   
-                    Stats.findOne(query, {
+                    Stats.update(query, {
                         $set: {
                             HLTV: results[0],
                             ADR: results[1],
@@ -58,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
                     })
                         .then(function (result) {
 
-
+                                    console.log(result)
                         })
 
                 })

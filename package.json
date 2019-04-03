@@ -8,9 +8,10 @@
     "cli-table": "^0.3.1",
     "discord.js": "^11.4.2",
     "express": "^4.16.4",
-    "fs": "^0.0.1-security",
+    "fs": "0.0.1-security",
     "jsonframe-cheerio": "^3.0.1",
-    "mongoose": "^5.4.19",
+    "mongodb": "^3.2.2",
+    "mongoose": "^5.4.21",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },
