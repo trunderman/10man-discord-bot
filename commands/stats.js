@@ -88,7 +88,8 @@ Stats.find(
 
     
                     let statsEmbed = new Discord.RichEmbed()
-                        .setDescription("Your stats")
+                        .setTitle("Your stats")
+                        .setDescription("Past 31 days")
                         .setColor("BLURPLE")
                         .addField("Wins", `${docs[0].W}`)
                         .addField("Losses", `${docs[0].L}`)

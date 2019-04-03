@@ -74,6 +74,7 @@ module.exports.run = async (bot, message, args) => {
 
         let embed = new Discord.RichEmbed()
             .setTitle("HLTV Leaderboard")
+            .setDescription("Past 31 days")
         //if there are no results
         if (res.length === 0) {
             embed.setColor("RED");

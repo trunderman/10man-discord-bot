@@ -12,6 +12,7 @@
     "jsonframe-cheerio": "^3.0.1",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.21",
+    "nodemon": "^1.18.10",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },
