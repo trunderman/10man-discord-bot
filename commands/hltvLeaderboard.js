@@ -42,11 +42,11 @@ module.exports.run = async (bot, message, args) => {
                     
 
                     var results = arr.map(Number)
-                    console.log(results)
+                  
 
                     var query = { userId: entry };
-                    console.log(query)
-                    Stats.findOne(query, {
+                   
+                    Stats.update(query, {
                         $set: {
                             HLTV:results[0],
                             ADR: results[1],
@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
                     })
                         .then(function (result) {
 
-                           console.log(result)
+                          
 
                         })
                  
@@ -74,6 +74,7 @@ module.exports.run = async (bot, message, args) => {
 
         let embed = new Discord.RichEmbed()
             .setTitle("HLTV Leaderboard")
+            .setDescription("Past 31 days")
         //if there are no results
         if (res.length === 0) {
             embed.setColor("RED");

@@ -11,9 +11,6 @@ module.exports.run = async (bot, message, args) => {
     //pull most recent stats for all registered players
     var ids = [];
 
-   
-
-
     Stats.find({}, 'userId', { '_id': 0 }, function (err, docs) {
 
         for (i = 0; i < docs.length; i++) {
@@ -37,14 +34,14 @@ module.exports.run = async (bot, message, args) => {
 
                     });
 
-
+                       
 
                     var results = arr.map(Number)
                    
 
                     var query = { userId: entry };
                   
-                    Stats.findOne(query, {
+                    Stats.update(query, {
                         $set: {
                             HLTV: results[0],
                             ADR: results[1],
@@ -58,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
                     })
                         .then(function (result) {
 
-
+                                  
                         })
 
                 })
@@ -91,7 +88,8 @@ Stats.find(
 
     
                     let statsEmbed = new Discord.RichEmbed()
-                        .setDescription("Your stats")
+                        .setTitle("Your stats")
+                        .setDescription("Past 31 days")
                         .setColor("BLURPLE")
                         .addField("Wins", `${docs[0].W}`)
                         .addField("Losses", `${docs[0].L}`)

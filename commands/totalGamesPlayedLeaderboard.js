@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 
                     var query = { userId: entry };
                     console.log(query)
-                    Stats.findOne(query, {
+                    Stats.update(query, {
                         $set: {
                             HLTV: results[0],
                             ADR: results[1],
@@ -74,6 +74,7 @@ module.exports.run = async (bot, message, args) => {
 
         let embed = new Discord.RichEmbed()
             .setTitle("Total Wins Leaderboard")
+            .setDescription("Past 31 days")
         //if there are no results
         if (res.length === 0) {
             embed.setColor("RED");
