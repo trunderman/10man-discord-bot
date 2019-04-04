@@ -3,42 +3,6 @@ const RC = require('reaction-core');
 const handler = new RC.Handler()
 
 
-var currentMaps = [];
-
-var mapArr = [
-        {
-            name: 'de_cache',
-            number: '1⃣'
-        },
-        {
-            name: 'de_inferno',
-            number: '2⃣'
-        },
-        {
-            name: 'de_mirage',
-            number: '3⃣'
-        },
-        {
-            name: 'de_dust2',
-            number: '4⃣'
-        },
-        {
-            name: 'de_overpass',
-            number: '5⃣'
-        },
-        {
-            name: 'de_train',
-            number: '6⃣'
-        },
-        {
-            name: 'de_nuke',
-            number: '7⃣'
-        },
-        {
-            name: 'de_vertigo',
-            number: '8⃣'
-        }
-];
 
 module.exports.run = async (bot, message, args) => {
 
@@ -75,6 +39,7 @@ module.exports.run = async (bot, message, args) => {
     bot.on('messageReactionAdd', (messageReaction, user) => handler.handle(messageReaction, user))
     const b = require('../buttons.js')
     let mapBanner = new RC.Menu(b.embed, b.buttons, b.options)
+  
     handler.addMenus(mapBanner)
 
     message.channel.sendMenu(mapBanner)
