@@ -42,10 +42,10 @@ module.exports.run = async (bot, message, args) => {
                     
 
                     var results = arr.map(Number)
-                    console.log(results)
+                  
 
                     var query = { userId: entry };
-                    console.log(query)
+                   
                     Stats.update(query, {
                         $set: {
                             HLTV:results[0],
@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
                     })
                         .then(function (result) {
 
-                           console.log(result)
+                          
 
                         })
                  

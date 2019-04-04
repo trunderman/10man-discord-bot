@@ -6,6 +6,8 @@ const fs = require("fs")
 let cheerio = require('cheerio');
 var request = require('request');
 const $ = require('cheerio');
+const RC = require('reaction-core');
+const handler = new RC.Handler()
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
@@ -49,5 +51,10 @@ bot.on("message", async message => {
 
 
 });
+
+bot.on('messageReactionAdd', (messageReaction, user) => handler.handle(messageReaction, user))
+const b = require('./buttons')
+let mapBanner = new RC.Menu(b.embed, b.buttons, b.options)
+handler.addMenus(mapBanner)
 
 bot.login(botconfig.token);

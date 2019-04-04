@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
                        
 
                     var results = arr.map(Number)
-                   console.log(results[0]);
+                   
 
                     var query = { userId: entry };
                   
@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
                     })
                         .then(function (result) {
 
-                                    console.log(result)
+                                  
                         })
 
                 })
