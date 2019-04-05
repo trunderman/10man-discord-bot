@@ -20,14 +20,14 @@ fs.readdir("./commands/", (err, files) => {
     }
 
     jsfile.forEach((f, i) => {
-        let props = require(`./commands/${f}`);
-        console.log(`${f} loaded`);
+        let props = require(`./commands/${f}`);     
         bot.commands.set(props.help.name, props);
     });
 })
 
 
-bot.on("ready", async() => {
+bot.on("ready", async () => {
+    
     console.log(`${bot.user.username} is online ! `);
     //bot.user.setActivity("10 mans", { type: "Watching" });
 }); 
@@ -52,9 +52,6 @@ bot.on("message", async message => {
 
 });
 
-bot.on('messageReactionAdd', (messageReaction, user) => handler.handle(messageReaction, user))
-const b = require('./buttons')
-let mapBanner = new RC.Menu(b.embed, b.buttons, b.options)
-handler.addMenus(mapBanner)
+
 
 bot.login(botconfig.token);

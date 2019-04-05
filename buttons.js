@@ -1,13 +1,4 @@
-﻿const COLOURS = {
-    red: 0xff0000,
-    green: 0x00ff00,
-    blue: 0x0000ff,
-    white: 0xffffff
-}
-
-
-
-
+﻿
 const buttons = [
     {
         emoji: '1⃣',
@@ -78,8 +69,10 @@ const buttons = [
 ]
 
 var embed = {
+    
     title: "Current Map Pool",
     description: "**__Wait for reactions to load before voting__**",
+   
     fields: [
         {
             name: '1',
@@ -113,8 +106,8 @@ var embed = {
             name: '8',
             value: 'de_vertigo'
         }
-    ],
-    color: COLOURS.white
+    ]
+    
 }
 
 const bannedMap = {
@@ -128,14 +121,8 @@ const bannedMap = {
     vertigoBan: `~~${embed.fields[7].value}~~`
 }
 
-// var cacheBan = embed.fields[0].value.toString().strike();
-
-// console.log(cacheBan)
-
-
 module.exports = {
     bannedMap: bannedMap,
     buttons: buttons,
-    embed: embed,
-    COLOURS: COLOURS
+    embed: embed,  
 }
