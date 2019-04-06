@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 
-
 module.exports.run = async (bot, message, args) => {
 
     let role = message.guild.roles.find(r => r.name === "captain");
