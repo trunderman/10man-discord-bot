@@ -4,7 +4,7 @@ const handler = new RC.Handler()
 const b = require('../buttons.js')
 
 module.exports.run = async (bot, message, args) => {
-
+    
     if (message.member.roles.some(role => role.name === 'captain')) {
         
         map()
