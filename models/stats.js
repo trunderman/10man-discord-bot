@@ -4,13 +4,14 @@ const statSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     userName: String,
     userId: String,
-    HLTV: String,
+    HLTV: Number,
     ADR: String,
     HS: String,
     W: Number,
     L: Number,
     totalGames: Number,
-    win_percent: String
+    win_percent: String,
+    rank: String
 
 });
 

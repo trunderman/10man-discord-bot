@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 
 
         if (member.roles.has(tenManner)) {
-            member.send(`**__ATTENTION ALL 10 MAN GAMERS, DIRTY TOM AND THE BOIS NEED ${availableSpots} GAMERS FOR 10s. Reserve your spot by joining the 10 mans pregame lobby.__**`,
+            member.send(`**__ATTENTION ALL 10 MAN GAMERS, DIRTY TOM AND THE BOIS NEED ${availableSpots} GAMERS FOR 10s at 9:00pm EST. Reserve your spot NOW by joining the 10 mans pregame lobby.__**`,
                 {
                     files: ['https://cdn.discordapp.com/attachments/278687214798503936/563944301042597908/UncleTom.png']
                 }
