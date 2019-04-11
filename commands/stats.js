@@ -28,11 +28,9 @@ Stats.find(
 
             message.channel.send(statsEmbed);
             
-
         } else if (docs.length == 0) {
             Stats.find({ userName: message.member.user.tag }, { '_id': 0, '__v': 0, 'userId': 0, 'userName': 0 }, function (err, docs) {
-
-    
+  
                     let statsEmbed = new Discord.RichEmbed()
                         .setTitle("Your stats")
                         .setDescription("Past 31 days")
@@ -45,14 +43,9 @@ Stats.find(
                         .addField("Headshot Percentage", `${docs[0].HS}`);
 
                 message.channel.send(statsEmbed);
-              
-               
-
             })
 
         }
-
-
     } 
 );
 
