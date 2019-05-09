@@ -34,13 +34,30 @@ module.exports.run = async (bot, message, args) => {
              });
 
              var results = arr.map(Number)
-             //console.log(results)
+
+             function setRank(results) {
+                 if (results[0] <= .6) {
+                     return "E"
+                 } else if (results[0] > 0.61 && results[0] < 0.80) {
+                     return "D"
+                 } else if (results[0] > 0.81 && results[0] < 1.0) {
+                     return "C"
+                 } else if (results[0] > 1.01 && results[0] < 1.15) {
+                     return "B"
+                 } else if (results[0] > 1.16 && results[0] < 1.25) {
+                     return "A"
+                 } else if (results[0] > 1.26 && results[0] < 1.5) {
+                     return "G"
+                 } else if (results[0] > 1.50) {
+                     return "S"
+                 }
+             }
 
              var query = { userId: args };
              console.log(query);
              Stats.findOneAndUpdate(query, {
                  $set: {
-                     //_id: mongoose.Types.ObjectId(),
+
                      userName: message.member.user.tag,
                      userId: args,
                      HLTV: results[0],
@@ -50,35 +67,21 @@ module.exports.run = async (bot, message, args) => {
                      L: results[4],
                      T: results[5],
                      totalGames: results[3] + results[4],
-                     win_percent: results[6]
+                     win_percent: results[6],
+                     rank: setRank(results)
                  }
              }, {upsert:true} )
                  .then(function (result) {
                 
-                     message.reply("popflash stats have been scraped");
+                     message.reply("popflash has been linked");
                      
                  })
-            
-             //const stats = new Stats({
-                
-             //});
 
-             //console.log(stats.userName);
-
-            
-             //stats.save()
-             //    .then(function (result) {                   
-             //        message.reply(", your stats are:" + result.toString());
-             //    })
-                 //.then(result => console.log(result));
-                 //    message.reply(result.toString());
          })
  
-         //
-         //    console.log("oops error yikes");
-         //});         //.catch(function (err) {
-    }    //    console.log("oops error yikes");
-         //});
+        
+    }    
+         
 }
 
 module.exports.help = {

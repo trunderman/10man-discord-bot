@@ -1,4 +1,7 @@
 ﻿
+const pick = require('./commands/pickteams.js')
+
+
 const buttons = [
     {
         emoji: '1⃣',
@@ -11,6 +14,8 @@ const buttons = [
                 embed.fields[0].value = activeMap.cacheActive; 
 
             }, 60 * 1000);
+
+            console.log(pick.players)
          
             message.edit({ embed: newEmbed }) 
         }
